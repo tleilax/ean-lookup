@@ -7,3 +7,6 @@
 [submodule "vendor/jquery-mobile"]
 	path = vendor/jquery-mobile
 	url = git://github.com/jquery/jquery-mobile.git
+[submodule "vendor/flexi"]
+	path = vendor/flexi
+	url = https://github.com/luniki/flexi-templates
