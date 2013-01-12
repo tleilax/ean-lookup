@@ -10,3 +10,6 @@
 [submodule "vendor/flexi"]
 	path = vendor/flexi
 	url = https://github.com/luniki/flexi-templates
+[submodule "vendor/password-compat"]
+	path = vendor/password-compat
+	url = git://github.com/ircmaxell/password_compat.git
