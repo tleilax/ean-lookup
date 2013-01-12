@@ -1,0 +1,6 @@
+[submodule "vendor/google-api"]
+	path = vendor/google-api
+	url = git://github.com/evert/google-api-php-client.git
+[submodule "vendor/trails"]
+	path = vendor/trails
+	url = git://github.com/luniki/trails.git
