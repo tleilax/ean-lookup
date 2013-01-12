@@ -4,3 +4,6 @@
 [submodule "vendor/trails"]
 	path = vendor/trails
 	url = git://github.com/luniki/trails.git
+[submodule "vendor/jquery-mobile"]
+	path = vendor/jquery-mobile
+	url = git://github.com/jquery/jquery-mobile.git
