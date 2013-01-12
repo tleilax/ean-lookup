@@ -12,6 +12,30 @@
         <header>
             EAN Lookup
         </header>
+        <nav class="main">
+            <section class="user-area">
+            <? if (!User::isLoggedIn()): ?>
+                <form action="<?= $controller->url_for('user/login') ?>">
+                    <input type="text" name="nickname" placeholder="Nickname or eMail">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="Login">
+                </form>
+            <? else: ?>
+                Eingeloggt als
+                <a href="<?= $controller->url_for('user/profile', User::getNickname()) ?>">
+                    <?= User::getNickname() ?>
+                </a>
+                |
+                <a href="<?= $controller->url_for('user/logout') ?>">
+                    Logout
+                </a>
+            <? endif; ?>
+            </section>
+
+            <ul>
+                <li>Startseite</li>
+            </ul>
+        </nav>
         <div class="mainstage">
             <?= $content_for_layout . "\n" ?>
         </div>

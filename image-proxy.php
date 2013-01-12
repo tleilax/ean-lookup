@@ -5,8 +5,8 @@
         Cache::Purge();
     }
 
-    $image   = $_REQUEST['image'];
-    $hash    = md5($image);
+    $image = $_REQUEST['image'];
+    $hash  = md5($image);
 
     $content = Cache::find($hash, 'jpeg', function () use ($image) {
         $remote = file_get_contents($image);

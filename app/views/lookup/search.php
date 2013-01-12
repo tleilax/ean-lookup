@@ -8,8 +8,8 @@
 
 <? if (!empty($ean)): ?>
 
+<? if ($results && !empty($results['items'])): ?>
 <h1>Ergebnisse (<?= date('d.m.Y H:i', $results['timestamp']) ?>)</h1>
-<? if ($results && count($results['items']) > 0): ?>
 <ul class="products">
 <? foreach ($results['items'] as $result): ?>
     <li class="product">
@@ -22,11 +22,11 @@
         <? foreach ($result['product']['images'] as $image): ?>
             <li class="product-image">
             <? if ($image['thumbnails']): ?>
-                <a href="image-proxy.php?image=<?= urlencode($image['link']) ?>">
-                    <img src="image-proxy.php?image=<?= urlencode($image['thumbnails'][0]['link']) ?>" alt="">
+                <a href="external-image/<?= $image['link'] ?>">
+                    <img src="external-image/<?= $image['thumbnails'][0]['link'] ?>" alt="ff">
                 </a>
             <? else: ?>
-                <img src="image-proxy.php?image=<?= urlencode($image['link']) ?>" alt="">
+                <img src="image-proxy.php?image=<?= $image['link'] ?>" alt="">
             <? endif; ?>
             </li>
         <? endforeach; ?>

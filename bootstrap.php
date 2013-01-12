@@ -1,6 +1,7 @@
 <?php
     error_reporting(E_ALL);
     date_default_timezone_set('Europe/Berlin');
+    session_start();
 
     require_once 'includes/config.inc.php';
 

@@ -1,4 +1,8 @@
 RewriteEngine On
 RewriteBase /~tleilax/ean-lookup
+
+RewriteCond %{THE_REQUEST} ^GET\ .*?external-image/([^\s]+)
+RewriteRule external-image/(.*?)$ image-proxy.php?image=%1 [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^.*$ index.php?path=$0 [QSA,L]
