@@ -13,3 +13,6 @@
 [submodule "vendor/password-compat"]
 	path = vendor/password-compat
 	url = git://github.com/ircmaxell/password_compat.git
+[submodule "vendor/html5-boilerplate"]
+	path = vendor/html5-boilerplate
+	url = git://github.com/h5bp/html5-boilerplate.git
