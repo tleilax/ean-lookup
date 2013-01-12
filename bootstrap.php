@@ -1,26 +1,20 @@
 <?php
-    require_once 'includes/config.inc.php';
-
+    error_reporting(E_ALL);
     date_default_timezone_set('Europe/Berlin');
 
+    require_once 'includes/config.inc.php';
+
+    # load trails
+    require_once 'vendor/trails/lib/trails.php';
+    require_once 'vendor/flexi/lib/flexi.php';
+
+    // Register auto loader
     spl_autoload_register(function ($class) {
-        require 'classes/' . $class . '.php';
+        if (strpos($class, 'GoogleApi') === 0) {
+            require 'vendor/google-api/src/' . str_replace('\\', '/', $class) . '.php';
+        } else {
+            require 'classes/' . $class . '.php';
+        }
     });
     
     DB::SetConnection(DB_CONNECTION);
-
-    function render($view, $_variables = array(), $layout = false)
-    {
-        extract($_variables);
-        ob_start();
-        require 'views/' . $view . '.php';
-        $CONTENT = ob_get_clean();
-
-        if ($layout) {
-            ob_start();
-            require 'views/' . $layout . '.php';
-            $CONTENT = ob_get_clean();
-        }
-
-        return $CONTENT;
-    }

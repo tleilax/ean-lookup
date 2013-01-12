@@ -6,14 +6,11 @@ class Lookup
 
     public static function Google($needle, $country = 'DE', $thumbsnails = '150:150')
     {
-        require_once 'vendor/google-api/src/Google_Client.php';
-        require_once 'vendor/google-api/src/contrib/Google_ShoppingService.php';
-
-        $client = new Google_Client();
+        $client = new GoogleApi\Client();
         $client->setApplicationName(self::APPLICATION_NAME);
         $client->setDeveloperKey(self::GOOGLE_KEY);
 
-        $service = new Google_ShoppingService($client);
+        $service = new GoogleApi\Contrib\apiShoppingService($client);
         return $service->products->listProducts('public', array(
           'q'          => $needle,
           'country'    => $country,

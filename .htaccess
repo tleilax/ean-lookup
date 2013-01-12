@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /~tleilax/ean-lookup
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*$ index.php?path=$0 [QSA,L]
