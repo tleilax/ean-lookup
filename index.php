@@ -15,4 +15,5 @@
     $default_controller = 'welcome';
 
     $dispatcher = new Trails_Dispatcher($trails_root, $trails_uri, $default_controller);
+    $dispatcher->request_uri = $request_uri;
     $dispatcher->dispatch($request_uri);

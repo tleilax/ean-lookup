@@ -1,5 +1,5 @@
 <?php
-class WelcomeController extends Trails_Controller
+class WelcomeController extends AppController
 {
     public function before_filter(&$action, &$args)
     {
