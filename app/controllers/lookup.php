@@ -1,21 +1,22 @@
 <?php
-class LookupController extends Trails_Controller
+class LookupController extends AppController
 {
-    public function before_filter(&$action, &$args)
-    {
-        parent::before_filter($action, $args);
-        
-        $this->set_layout('layout');
-    }
-    
     public function search_action($debug = false)
     {
+        $this->checkAuth();
+
         $this->ean   = @$_REQUEST['ean'] ?: '';
         $this->debug = !empty($debug);
 
         if (!empty($this->ean)) {
-            $this->product = Product::find($this->ean);
-            if ($this->product->isNew()) {
+            $this->product = R::findOne('product', 'ean = ?', array($this->ean));
+            if ($this->product === null) {
+                $product = R::dispense('product');
+                $product->ean = $this->ean;
+                $id = R::store($product);
+
+                $this->product = $product;
+
                 $this->results = Cache::find($this->ean, 'json', function ($needle) {
                     $results = Lookup::Google($needle);
                     $results['timestamp'] = time();

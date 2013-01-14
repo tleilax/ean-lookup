@@ -20,8 +20,28 @@ class Auth
         }
         return self::$instance;
     }
+    
+    public static function User()
+    {
+        static $user = false;
 
-    protected $data = array('status' => self::STATUS_USER);
+//        echo '<pre>';var_dump(self::Get()->testAuth(self::STATUS_USER, $data), $_SESSION, $data);die;
+
+        $data = null;
+        if (!self::Get()->testAuth(self::STATUS_USER, $data)) {
+            return false;
+        }
+
+        if ($user === false) {
+            $user = R::load('user', $data['user_id']);
+            $user->last_action = R::isoDateTime();
+            R::store($user);
+        }
+
+        return $user;
+    }
+
+    protected $data = array('status' => self::STATUS_NONE);
 
     //
     private function __construct()
@@ -44,8 +64,8 @@ class Auth
 
     public function testAuth($status = self::STATUS_USER, &$additional = null)
     {
-        $additional = $this->data['additional'] ?: null;
-        return $status >= $this->data['status'];
+        $additional = @$this->data['additional'] ?: null;
+        return $status <= $this->data['status'];
     }
 
     public function unsetAuth()

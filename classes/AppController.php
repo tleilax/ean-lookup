@@ -1,11 +1,15 @@
 <?php
 class AppController extends Trails_Controller
 {
+    protected $flash;
+    
     public function before_filter(&$action, &$args)
     {
         parent::before_filter($action, $args);
 
         $this->set_layout('layout');
+        
+        $this->flash = Trails_Flash::instance();
     }
 
     public function checkAuth($status = Auth::STATUS_USER)
