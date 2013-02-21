@@ -1,0 +1,47 @@
+{
+    "all": {
+    },
+    "none": {
+        "register": {
+            "label": "Registrieren",
+            "action": "auth/register",
+            "icon": "globe"
+        },
+        "secondary/login": {
+            "label": "Login",
+            "action": "auth/login",
+            "icon": "user"
+        }
+    },
+    "user": {
+        "search": {
+            "label": "Suche",
+            "action": "lookup/search",
+            "icon": "search"
+        },
+        "categories": {
+            "label": "Produkte",
+            "action": "categories",
+            "icon": "shopping-cart"
+        },
+        "secondary/profile": {
+            "label": "#{user.nickname}",
+            "action": "account/#{user.nickname}",
+            "icon": "user"
+        },
+        "secondary/logout": {
+            "label": "Logout",
+            "action": "auth/logout",
+            "icon": "ban-circle"
+        }
+    },
+    "moderator": {
+        
+    },
+    "administrator": {
+        
+    },
+    "root": {
+        
+    }
+}

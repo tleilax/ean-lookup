@@ -1,1 +1,0 @@
-<h1>Produktkategorien</h1>

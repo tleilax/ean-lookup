@@ -1,8 +1,12 @@
 <?php
 class ProductsController extends AppController
 {
-    public function categories_action()
+    public function add_action()
     {
-        $this->checkAuth();
+        $title = $_REQUEST['title'];
+        $brand = $_REQUEST['brand'];
+        $ean   = $_REQUEST['ean'];
+        
+        echo '<pre>';var_dump($title, $brand, $ean);die;
     }
 }

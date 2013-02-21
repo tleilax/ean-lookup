@@ -1,0 +1,51 @@
+{
+    "name": "EAN Lookup",
+    "authors": [
+        {
+            "name": "Jan-Hendrik Willms",
+            "email": "tleilax+ean@gmail.com",
+            "homepage": "http://tleilax.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "luniki/flexi-templates": "0.5.0",
+        "luniki/trails": "0.6.8",
+        "evert/google-api-php-client": "dev-master",
+        "ircmaxell/password-compat": "1.0.0",
+        "gabordemooij/redbean": "v3.3.6"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "luniki/flexi-templates",
+                "version": "0.5.0",
+                "source": {
+                    "url": "git://github.com/luniki/flexi-templates.git",
+                    "type": "git",
+                    "reference": "origin/master"
+                },
+                "autoload": {
+                    "classmap": ["lib/"]
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "luniki/trails",
+                "version": "0.6.8",
+                "source": {
+                    "url": "git://github.com/luniki/trails.git",
+                    "type": "git",
+                    "reference": "origin/master"
+                },
+                "autoload": {
+                    "classmap": ["lib/src/"]
+                }
+            }
+        }
+    ]
+}

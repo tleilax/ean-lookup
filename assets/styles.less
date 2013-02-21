@@ -1,44 +1,30 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
-.canvas {
-    margin: 0 1em;
-}
-header {
-    border-bottom: 1px solid #444;
-    font-size: 2em;
-    padding: 0.5em 0;
-    position: relative;
-    text-align: center;
-}
-.mainstage {
-    min-height: 300px;
-}
-footer {
-    border-top: 1px solid #444;
-    margin-top: 0.5em;
-    padding: 0.5em 0;
-    text-align: center;
-}
-nav.main {
-    border-bottom: 1px solid #444;
-    margin-bottom: 0.5em;
-    padding: 0.25em 0;
-    position: relative;
-    
-    ul, li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    li {
-        display: inline-block;
-    }
-    .user-area {
-        float: right;
-    }
+body {
+    padding-bottom: 40px;
+    padding-top: 60px;
 }
 
-@import "form.less";
-@import "products.less";
+.category-depth-1 { padding-left: 1em; }
+.category-depth-2 { padding-left: 2em; }
+.category-depth-3 { padding-left: 3em; }
+.category-depth-4 { padding-left: 4em; }
+.category-depth-5 { padding-left: 5em; }
+.category-depth-6 { padding-left: 6em; }
+.category-depth-7 { padding-left: 7em; }
+.category-depth-8 { padding-left: 8em; }
+.category-depth-9 { padding-left: 9em; }
+
+.thumbnail {
+    position: relative;
+
+    .close-trigger {
+        opacity: 0;
+        transition: all 0.5s;
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        
+        cursor: pointer;
+    }
+    &:hover .close-trigger { opacity: 1; }
+}

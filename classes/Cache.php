@@ -2,7 +2,7 @@
 class Cache
 {
     protected static $directory    = 'cache/';
-    protected static $max_duration = 3600; // 15 * 60 = 15 minutes
+    protected static $max_duration = 604800; // = 7 * 24 * 60 * 60 = 15 minutes
 
     public static function setDirectory($directory)
     {

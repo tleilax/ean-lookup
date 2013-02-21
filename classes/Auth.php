@@ -1,13 +1,17 @@
 <?php
 class Auth
 {
-    const STATUS_NONE = 0;
-    const STATUS_USER = 1;
-    const STATUS_ROOT = 2;
+    const STATUS_NONE      = 0;
+    const STATUS_USER      = 1;
+    const STATUS_MODERATOR = 2;
+    const STATUS_ADMIN     = 8;
+    const STATUS_ROOT      = 9;
 
     protected static $status_mapping = array(
         1 => 'user',
-        2 => 'root',
+        2 => 'moderator',
+        8 => 'administrator',
+        9 => 'root',
     );
 
     protected static $instance = null;
@@ -41,6 +45,20 @@ class Auth
         return $user;
     }
 
+    public static function getNavigationStatus()
+    {
+        if (!self::User()) {
+            return 'none';
+        }
+        $status = array();
+        foreach (self::$status_mapping as $key => $label) {
+            if (self::Get()->testAuth($key)) {
+                $status[] = $label;
+            }
+        }
+        return $status;
+    }
+
     protected $data = array('status' => self::STATUS_NONE);
 
     //
@@ -48,6 +66,14 @@ class Auth
     {
         if (isset($_SESSION['auth'])) {
             $this->data = json_decode($_SESSION['auth'], true);
+        } else if (isset($_COOKIE['memento'])) {
+            $cookie_hash = $_COOKIE['memento'];
+            $user = R::findOne('user', 'cookie = ?', array($cookie_hash));
+            if ($user->id) {
+                $this->setAuth($user->status, array('user_id' => $user->id));
+            } else {
+                setcookie('memento', null, strtotime('-1 week'), '/');
+            }
         }
     }
 

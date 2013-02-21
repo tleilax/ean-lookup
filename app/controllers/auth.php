@@ -13,8 +13,8 @@ class AuthController extends AppController
             $user->last_action        = null;
             $id = R::store($user);
 
+            $this->report_succes('Sie haben sich erfolgreich registriert');
             $this->redirect('auth/registered');
-            return;
         }
     }
     
@@ -36,6 +36,15 @@ class AuthController extends AppController
                 }
 
                 Auth::get()->setAuth($user->status, array('user_id' => $user->id));
+
+                if ($_REQUEST['remember-me']) {
+                    $cookie_hash  = md5(uniqid('cookie-hash', true));
+                    $user->cookie = $cookie_hash;
+                    R::store($user);
+
+                    setcookie('memento', $cookie_hash, strtotime('+1 month'), '/');
+                }
+
                 $this->redirect($this->return_to ?: 'welcome/index');
                 return;
             }
@@ -45,6 +54,9 @@ class AuthController extends AppController
     function logout_action()
     {
         Auth::get()->unsetAuth();
+        if ($_COOKIE['memento']) {
+            setcookie('memento', null, strtotime('-1 week'), '/');
+        }
         $this->redirect('welcome/index');
     }
 }
