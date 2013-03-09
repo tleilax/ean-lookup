@@ -7,6 +7,6 @@ class ProductsController extends AppController
         $brand = $_REQUEST['brand'];
         $ean   = $_REQUEST['ean'];
         
-        echo '<pre>';var_dump($title, $brand, $ean);die;
+        echo '<pre>';var_dump($title, $brand, $ean, $_REQUEST);die;
     }
 }

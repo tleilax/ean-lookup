@@ -19,7 +19,7 @@
 </form>
 
 <? if (isset($title)): ?>
-<form action="<?= $controller->url_for('products/add') ?>" action="post" class="form-horizontal">
+<form action="<?= $controller->url_for('products/add') ?>" method="post" class="form-horizontal">
     <input type="hidden" name="ean" value="<?= $ean ?>">
 
     <fieldset>
@@ -52,6 +52,14 @@
                 <input class="input-xxlarge" type="text" name="brand" id="brand" value="<?= htmlReady($brand) ?>">
             </div>
         </div>
+
+        <div class="control-group">
+            <label class="control-label">Bilder</label>
+            <div class="controls">
+                <ul class="inline product-images">
+                </ul>
+            </div>
+        </div>
         
         <div class="control-group">
             <div class="controls">
@@ -69,22 +77,31 @@
                     <div class="close-trigger">
                         <i class="icon-remove"></i>
                     </div>
-                    <img src="external-image/<?= $image['thumbnail'] ?>" alt="">
-                    <h3><small>Größe: <span class="dimensions">lädt</span></small></h3>
+                    <img src="external-image/200/<?= $image['link'] ?>" alt="">
                     <div class="btn-group">
                         <a href="external-image/<?= $image['link'] ?>" class="btn modal-image original-image"
                            data-target="#image-modal">
                             <i class="icon-picture"></i>
-                            Anzeigen
+                            Größe:
+                            <span class="dimensions">lädt</span>
                         </a>
-                        <a href="#" class="btn">
-                            <i class="icon-bookmark"></i>
-                            Cover
-                        </a>
-                        <a href="#" class="btn">
-                            <i class="icon-film"></i>
-                            Extra
-                        </a>
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" data-imageadd="<?= $image['link'] ?>" data-cover="true">
+                                    <i class="icon-bookmark"></i>
+                                    Produktbild hinzufügen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-imageadd="<?= $image['link'] ?>">
+                                    <i class="icon-film"></i>
+                                    Weiteres Bild hinzufügen
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </li>
