@@ -55,3 +55,7 @@ body {
 .thumbnail:hover .close-trigger {
   opacity: 1;
 }
+
+.product-images::empty:before {
+  content: "Keine";
+}

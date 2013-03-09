@@ -11,8 +11,8 @@ do ($ = jQuery) ->
         $(this).closest('li').hide('slow')
         false
 
-    items           = thumbnails.find 'li'
-    total           = items.length
+    items = thumbnails.children 'li'
+    total = items.length
 
     return if total is 0
 
@@ -60,3 +60,25 @@ do ($ = jQuery) ->
             callback_done()
         img.onerror = callback_done
         img.src = src
+
+    # select product images
+    images = $ '.product-images'
+    thumbnails.on 'click', '[data-imageadd]', ->
+        data  = $(this).data()
+        img   = data.imageadd
+        cover = data.cover?
+        li    = $ """
+                  <li>
+                    <input type="hidden" name="files[]" value="#{img}"/>
+                    <img src="external-image/120/#{img}"/>
+                  </li>
+                  """
+        if data.cover?
+            li.prepend $ """
+                         <input type="hidden" name="cover" value="#{img}"/>
+                         """
+            images.prepend li
+        else
+            images.append li
+        $(this).closest('.span3').hide()
+        false
